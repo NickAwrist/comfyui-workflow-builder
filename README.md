@@ -88,7 +88,6 @@ workflow.addNode(saveImage);
 
 // 3. Export to JSON
 const workflowJson = workflow.workflow();
-console.log(JSON.stringify(workflowJson, null, 2));
 ```
 
 ### 2. Using Pre-built Workflows

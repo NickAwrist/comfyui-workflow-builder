@@ -101,7 +101,5 @@ export function basicImageGenerationWorkflow(input: ImageGenerationWorkflowInput
   });
   workflow.addNode(saveImageNode);
 
-  console.log(workflow.workflow());
-
   return workflow;
 }
