@@ -43,7 +43,11 @@ export function basicImageGenerationWorkflow(input: ImageGenerationWorkflowInput
     });
     imageNode = vaEncodeNode;
   } else {
-    imageNode = new EmptyLatentImageNode();
+    imageNode = new EmptyLatentImageNode({
+      width: input.width,
+      height: input.height,
+      batch_size: input.batch_size
+    });
   }
   workflow.addNode(imageNode);
 

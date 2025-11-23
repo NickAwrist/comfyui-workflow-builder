@@ -16,6 +16,7 @@ export interface ImageGenerationWorkflowInput {
   sampler?: string;
   width?: number;
   height?: number;
+  batch_size?: number;
   image?: string;
   denoise?: number;
 }
