@@ -1,31 +1,31 @@
 import type { BaseNode } from "../BaseNode";
 
-export type ModelProviderNode = BaseNode & HasModel;
-export interface HasModel {
+export type ModelProviderNode = BaseNode & OutputsModel;
+export interface OutputsModel {
   get MODEL(): number;
 }
 
-export type ClipProviderNode = BaseNode & HasClip;
-export interface HasClip {
+export type ClipProviderNode = BaseNode & OutputsClip;
+export interface OutputsClip {
   get CLIP(): number;
 }
 
-export type VaeProviderNode = BaseNode & HasVAE;
-export interface HasVAE {
+export type VaeProviderNode = BaseNode & OutputsVAE;
+export interface OutputsVAE {
   get VAE(): number;
 }
 
-export type ConditioningProviderNode = BaseNode & HasConditioning;
-export interface HasConditioning {
+export type ConditioningProviderNode = BaseNode & OutputsConditioning;
+export interface OutputsConditioning {
   get CONDITIONING(): number;
 }
 
-export type LatentImageProviderNode = BaseNode & HasLatentImage;
-export interface HasLatentImage {
+export type LatentImageProviderNode = BaseNode & OutputsLatentImage;
+export interface OutputsLatentImage {
   get LATENT_IMAGE(): number;
 }
 
-export type DecodedImageProviderNode = BaseNode & HasDecodedImage;
-export interface HasDecodedImage {
+export type DecodedImageProviderNode = BaseNode & OutputsImage;
+export interface OutputsImage {
   get IMAGE(): number;
 }

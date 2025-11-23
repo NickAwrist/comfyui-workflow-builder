@@ -1,7 +1,7 @@
 import { BaseNode } from "./BaseNode";
-import type { ClipProviderNode, HasConditioning } from "./outputs/Providers";
+import type { ClipProviderNode, OutputsConditioning } from "./outputs/Providers";
 
-export class ClipTextEncodeNode extends BaseNode implements HasConditioning {
+export class ClipTextEncodeNode extends BaseNode implements OutputsConditioning {
 
   public readonly CONDITIONING_OUTPUT = 0;
 

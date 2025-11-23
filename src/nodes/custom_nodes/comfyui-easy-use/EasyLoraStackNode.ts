@@ -1,7 +1,7 @@
 // Custom node from https://github.com/yolain/ComfyUI-Easy-Use
 
-import { BaseNode } from "../BaseNode";
-import type { LoraStackProviderNode } from "./outputs/Providers";
+import { BaseNode } from "../../BaseNode";
+import type { LoraStackProviderNode } from "./outputs";
 
 export interface LoraConfig {
   name: string;

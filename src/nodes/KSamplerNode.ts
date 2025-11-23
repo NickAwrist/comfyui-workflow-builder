@@ -1,7 +1,7 @@
 import { BaseNode } from "./BaseNode";
-import type { ConditioningProviderNode, HasLatentImage, LatentImageProviderNode, ModelProviderNode } from "./outputs/Providers";
+import type { ConditioningProviderNode, OutputsLatentImage, LatentImageProviderNode, ModelProviderNode } from "./outputs/Providers";
 
-export class KSamplerNode extends BaseNode implements HasLatentImage {
+export class KSamplerNode extends BaseNode implements OutputsLatentImage {
 
   public readonly LATENT_IMAGE_OUTPUT = 0;
 

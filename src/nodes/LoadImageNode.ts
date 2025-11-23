@@ -1,7 +1,7 @@
-import type { HasDecodedImage } from "./outputs/Providers";
+import type { OutputsImage } from "./outputs/Providers";
 import { BaseNode } from "./BaseNode";
 
-export class LoadImageNode extends BaseNode implements HasDecodedImage {
+export class LoadImageNode extends BaseNode implements OutputsImage {
   public readonly IMAGE_OUTPUT = 0;
 
   public get IMAGE(): number {

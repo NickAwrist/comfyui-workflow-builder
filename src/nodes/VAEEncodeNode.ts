@@ -1,9 +1,9 @@
 import { BaseNode } from "./BaseNode";
-import type { HasLatentImage, VaeProviderNode } from "./outputs/Providers";
+import type { OutputsLatentImage, VaeProviderNode } from "./outputs/Providers";
 import type { ModelProviderNode } from "./outputs/Providers";
 import type { DecodedImageProviderNode } from "./outputs/Providers";
 
-export class VAEEncodeNode extends BaseNode implements HasLatentImage {
+export class VAEEncodeNode extends BaseNode implements OutputsLatentImage {
   public readonly LATENT_IMAGE_OUTPUT = 0;
 
   public get LATENT_IMAGE(): number {

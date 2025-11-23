@@ -1,7 +1,7 @@
 import { BaseNode } from "./BaseNode";
-import type { HasClip, ModelProviderNode, VaeProviderNode } from "./outputs/Providers";
+import type { OutputsClip, ModelProviderNode, VaeProviderNode } from "./outputs/Providers";
 
-export class LoadCheckpointNode extends BaseNode implements HasClip, ModelProviderNode, VaeProviderNode {
+export class LoadCheckpointNode extends BaseNode implements OutputsClip, ModelProviderNode, VaeProviderNode {
 
   public readonly MODEL_OUTPUT = 0;
   public readonly CLIP_OUTPUT = 1;

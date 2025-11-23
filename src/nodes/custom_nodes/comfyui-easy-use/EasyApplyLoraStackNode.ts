@@ -1,10 +1,10 @@
 // Custom node from https://github.com/yolain/ComfyUI-Easy-Use
 
-import { BaseNode } from "../BaseNode";
-import type { LoraStackProviderNode } from "./outputs/Providers";
-import type { ModelProviderNode, ClipProviderNode, HasModel, HasClip } from "../outputs/Providers";
+import { BaseNode } from "../../BaseNode";
+import type { LoraStackProviderNode } from "./outputs";
+import type { ModelProviderNode, ClipProviderNode, OutputsModel, OutputsClip } from "../../outputs/Providers";
 
-export class EasyApplyLoraStackNode extends BaseNode implements HasModel, HasClip {
+export class EasyApplyLoraStackNode extends BaseNode implements OutputsModel, OutputsClip {
 
   public readonly MODEL_OUTPUT = 0;
   public readonly CLIP_OUTPUT = 1;
