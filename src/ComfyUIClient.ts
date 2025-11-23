@@ -3,7 +3,7 @@ import type { AxiosResponse } from 'axios';
 import { promises as fs } from 'fs';
 import path from 'path';
 import type { HistoryResponse, PromptWorkflow, QueuePromptResponse } from './types';
-import { basicImageGenerationWorkflow } from './workflows/BasicImageGenerationWorkflow';
+import { basicImageGenerationWorkflow } from './workflows/ImageGenerationWorkflow';
 
 export class ComfyUIClient {
   private baseUrl: string;
@@ -58,7 +58,9 @@ export class ComfyUIClient {
     const workflow = basicImageGenerationWorkflow({
       positivePromptText: promptText,
       negativePromptText: "Bad quality",
-      checkpointName: "sd_xl_base_1.0.safetensors",
+      checkpointName: "oneObsession_v18.safetensors",
+      image: "IMG_6192.jpeg",
+      denoise: 0.3
     }).workflow();
 
     // 2. Queue prompt
