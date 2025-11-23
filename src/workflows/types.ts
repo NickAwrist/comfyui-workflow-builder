@@ -1,5 +1,10 @@
 import type { LoraConfig } from "../nodes/custom_nodes/comfyui-easy-use/EasyLoraStackNode";
 
+/**
+ * Input for Image Generation Workflow
+ * 
+ * @category Workflows
+ */
 export interface ImageGenerationWorkflowInput {
   positivePromptText: string;
   negativePromptText: string;

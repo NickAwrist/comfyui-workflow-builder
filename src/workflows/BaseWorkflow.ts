@@ -1,5 +1,13 @@
 import type { BaseNode } from "../nodes/BaseNode";
 
+/**
+ * Base Workflow class
+ * 
+ * @remarks
+ * Represents a workflow containing a collection of nodes.
+ * 
+ * @category Workflows
+ */
 export class BaseWorkflow {
   public nodes: BaseNode[];
   constructor() {

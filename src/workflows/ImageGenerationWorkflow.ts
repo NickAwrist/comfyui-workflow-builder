@@ -11,6 +11,18 @@ import type { ImageGenerationWorkflowInput } from "./types";
 import { LoadImageNode } from "../nodes/LoadImageNode";
 import { VAEEncodeNode } from "../nodes/VAEEncodeNode";
 
+/**
+ * Basic Image Generation Workflow
+ * 
+ * @remarks
+ * Creates a basic workflow for image generation, including checkpoint loading, 
+ * optional LoRA application, and sampling.
+ * 
+ * @category Workflows
+ * 
+ * @param input - The input configuration for the workflow.
+ * @returns The constructed workflow.
+ */
 export function basicImageGenerationWorkflow(input: ImageGenerationWorkflowInput): BaseWorkflow {
   const workflow = new BaseWorkflow();
 

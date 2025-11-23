@@ -4,6 +4,23 @@ import { BaseNode } from "../../BaseNode";
 import type { LoraStackProviderNode } from "./outputs";
 import type { ModelProviderNode, ClipProviderNode, OutputsModel, OutputsClip } from "../../outputs/Providers";
 
+/**
+ * Easy Apply Lora Stack node
+ * 
+ * @remarks
+ * This node applies a stack of LoRAs to a model and clip.
+ * 
+ * @category Custom Nodes
+ * 
+ * @example
+ * ```typescript
+ * const easyApplyLoraStackNode = new EasyApplyLoraStackNode({
+ *   loraStack: loraStackNode,
+ *   model: modelNode,
+ *   optionalClip: clipNode
+ * });
+ * ```
+ */
 export class EasyApplyLoraStackNode extends BaseNode implements OutputsModel, OutputsClip {
 
   public readonly MODEL_OUTPUT = 0;
@@ -18,8 +35,11 @@ export class EasyApplyLoraStackNode extends BaseNode implements OutputsModel, Ou
   }
 
   constructor(options: {
+    /** The LoRA stack to apply. */
     loraStack: LoraStackProviderNode,
+    /** The model to apply the LoRAs to. */
     model: ModelProviderNode,
+    /** Optional clip to apply the LoRAs to. */
     optionalClip?: ClipProviderNode,
   }) {
     super("easy loraStackApply", "Easy Apply Lora Stack", {

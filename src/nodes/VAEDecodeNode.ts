@@ -1,6 +1,22 @@
 import { BaseNode } from "./BaseNode";
 import type { VaeProviderNode, DecodedImageProviderNode, LatentImageProviderNode } from "./outputs/Providers";
 
+/**
+ * VAEDecode node
+ * 
+ * @remarks
+ * This node decodes a latent image using the VAE.
+ * 
+ * @category Standard Nodes
+ * 
+ * @example
+ * ```typescript
+ * const vaeDecodeNode = new VAEDecodeNode({
+ *   samples: latentImageNode,
+ *   vae: vaeNode
+ * });
+ * ```
+ */
 export class VAEDecodeNode extends BaseNode implements DecodedImageProviderNode {
 
   public readonly IMAGE_OUTPUT = 0;
@@ -10,7 +26,9 @@ export class VAEDecodeNode extends BaseNode implements DecodedImageProviderNode 
   }
 
   constructor(options: {
+    /** The latent image to decode. */
     samples: LatentImageProviderNode,
+    /** The VAE to use for decoding. */
     vae: VaeProviderNode
   }) {
     super("VAEDecode", "VAE Decode", {

@@ -1,6 +1,21 @@
 import { BaseNode } from "./BaseNode";
 import type { OutputsClip, ModelProviderNode, VaeProviderNode } from "./outputs/Providers";
 
+/**
+ * Load Checkpoint node
+ * 
+ * @remarks
+ * This node loads a checkpoint from a file.
+ * 
+ * @category Standard Nodes
+ * 
+ * @example
+ * ```typescript
+ * const loadCheckpointNode = new LoadCheckpointNode({
+ *   checkpoint_name: "checkpoint_name"
+ * });
+ * ```
+ */
 export class LoadCheckpointNode extends BaseNode implements OutputsClip, ModelProviderNode, VaeProviderNode {
 
   public readonly MODEL_OUTPUT = 0;
@@ -20,6 +35,7 @@ export class LoadCheckpointNode extends BaseNode implements OutputsClip, ModelPr
   }
 
   constructor(options: {
+    /** The name of the checkpoint to load. */
     checkpoint_name: string
   }) {
     super("CheckpointLoaderSimple", "Load Checkpoint", {

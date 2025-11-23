@@ -1,0 +1,19 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [
+    "./src/docs.ts"
+  ],
+  "out": "docs",
+  "categorizeByGroup": true,
+  "defaultCategory": "Uncategorized",
+  "categoryOrder": [
+    "Base",
+    "Standard Nodes",
+    "Custom Nodes",
+    "Node Outputs",
+    "Custom Node Outputs",
+    "Workflows",
+    "*"
+  ],
+  "name": "ComfyUI Workflow Builder Documentation"
+}

@@ -6,6 +6,24 @@ export interface NodeMeta {
   title: string;
 }
 
+/**
+ * Base node class
+ * 
+ * @remarks
+ * This class is abstract and should not be instantiated directly. 
+ * It is used as a base class for all node classes.
+ * 
+ * @category Base
+ * 
+ * @example
+ * ```typescript
+ * class MyNode extends BaseNode {
+ *   constructor() {
+ *     super("my_node", "My Node", { input: "string" });
+ *   }
+ * }
+ * ```
+ */
 export abstract class BaseNode {
 
   private static _node_id: number = 0;

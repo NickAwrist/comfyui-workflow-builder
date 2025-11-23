@@ -10,6 +10,26 @@ export interface LoraConfig {
   clipStrength?: number;
 }
 
+/**
+ * Easy Lora Stack node
+ * 
+ * @remarks
+ * This node creates a stack of LoRAs.
+ * 
+ * @category Custom Nodes
+ * 
+ * @example
+ * ```typescript
+ * const easyLoraStackNode = new EasyLoraStackNode({
+ *   toggle: true,
+ *   mode: 'simple',
+ *   loras: [
+ *     { name: "lora1.safetensors", strength: 1.0 },
+ *     { name: "lora2.safetensors", strength: 0.8 }
+ *   ]
+ * });
+ * ```
+ */
 export class EasyLoraStackNode extends BaseNode implements LoraStackProviderNode {
 
   public readonly LORA_STACK_OUTPUT = 0;
@@ -19,8 +39,11 @@ export class EasyLoraStackNode extends BaseNode implements LoraStackProviderNode
   }
 
   constructor(options: {
+    /** Whether to enable the LoRA stack. */
     toggle: boolean,
+    /** The mode of the LoRA stack. Defaults to 'simple'. */
     mode?: 'simple' | 'advanced',
+    /** The list of LoRAs to include in the stack. */
     loras: LoraConfig[]
   }) {
     const flatInputs: Record<string, any> = {
