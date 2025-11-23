@@ -3,7 +3,7 @@ import type { AxiosResponse } from 'axios';
 import { promises as fs } from 'fs';
 import path from 'path';
 import type { HistoryResponse, PromptWorkflow, QueuePromptResponse } from './types';
-import { basicImageGeneration } from './templates/basicImageGeneration';
+import { basicImageGenerationWorkflow } from './workflows/BasicImageGenerationWorkflow';
 
 export class ComfyUIClient {
   private baseUrl: string;
@@ -55,7 +55,11 @@ export class ComfyUIClient {
     const client = new ComfyUIClient("http://127.0.0.1:8188");
 
     // 1. Get workflow
-    const workflow = basicImageGeneration(promptText).workflow();
+    const workflow = basicImageGenerationWorkflow({
+      positivePromptText: promptText,
+      negativePromptText: "Bad quality",
+      checkpointName: "sd_xl_base_1.0.safetensors",
+    }).workflow();
 
     // 2. Queue prompt
     const response = await client.queuePrompt(workflow as PromptWorkflow);

@@ -22,7 +22,7 @@ export class KSamplerNode extends BaseNode implements HasLatentImage {
     latentImage: LatentImageProviderNode
   }) {
     super("KSampler", "KSampler", {
-      seed: options.seed ?? Math.random(),
+      seed: options.seed ?? Math.floor(Math.random() * Number.MAX_SAFE_INTEGER) + 1,
       steps: options.steps ?? 20,
       cfg: options.cfg ?? 7,
       sampler_name: options.samplerName ?? 'euler',

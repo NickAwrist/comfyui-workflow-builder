@@ -10,14 +10,6 @@ export class BaseWorkflow {
     this.nodes.push(node);
   }
 
-  public removeNode(node: BaseNode) {
-    this.nodes = this.nodes.filter((n) => n !== node);
-  }
-
-  public getNodes(): BaseNode[] {
-    return this.nodes;
-  }
-
   workflow(): Record<string, any> {
     const output: Record<string, any> = {};
 
