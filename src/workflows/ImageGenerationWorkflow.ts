@@ -173,6 +173,7 @@ export function zImageGenerationWorkflow(input: ImageGenerationWorkflowInput): B
     cfg: input.cfg,
     samplerName: input.sampler,
     denoise: input.denoise,
+    scheduler: "simple",
     model: modelSamplingAuraFlowNode,
     positiveConditioning: positivePrompt,
     negativeConditioning: conditioningZeroOutNode,
