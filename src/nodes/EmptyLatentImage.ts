@@ -37,3 +37,28 @@ export class EmptyLatentImageNode extends BaseNode implements LatentImageProvide
     });
   }
 }
+
+
+export class EmptySD3LatentImageNode extends BaseNode implements LatentImageProviderNode {
+
+  public readonly LATENT_IMAGE_OUTPUT = 0;
+
+  public get LATENT_IMAGE(): number {
+    return this.LATENT_IMAGE_OUTPUT;
+  }
+
+  constructor(options?: {
+    /** The width of the latent image. Defaults to 1024. */
+    width?: number,
+    /** The height of the latent image. Defaults to 1024. */
+    height?: number,
+    /** The batch size of the latent image. Defaults to 1. */
+    batch_size?: number
+  }) {
+    super("EmptySD3LatentImage", "Empty SD3 Latent Image", {
+      width: options?.width ?? 1024,
+      height: options?.height ?? 1024,
+      batch_size: options?.batch_size ?? 1
+    });
+  }
+}

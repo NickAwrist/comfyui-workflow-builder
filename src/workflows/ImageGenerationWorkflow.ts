@@ -10,6 +10,11 @@ import { EasyLoraStackNode } from "../nodes/custom_nodes/comfyui-easy-use/EasyLo
 import type { ImageGenerationWorkflowInput } from "./types";
 import { LoadImageNode } from "../nodes/LoadImageNode";
 import { VAEEncodeNode } from "../nodes/VAEEncodeNode";
+import { LoadDiffusionModelNode } from "../nodes/LoadDiffusionModelNode";
+import { LoadClipNode } from "../nodes/LoadClipNode";
+import { LoadVaeNode } from "../nodes/LoadVaeNode";
+import { ConditioningZeroOutNode } from "../nodes/ConditioningZeroOutNode";
+import { ModelSamplingAuraFlowNode } from "../nodes/ModelSamplingAuraFlowNode";
 
 /**
  * Basic Image Generation Workflow
@@ -50,8 +55,6 @@ export function basicImageGenerationWorkflow(input: ImageGenerationWorkflowInput
     });
   }
   workflow.addNode(imageNode);
-
-
 
   let easyLoraStackNode, easyApplyLoraStackNode;
   if (input.loras) {
@@ -97,6 +100,89 @@ export function basicImageGenerationWorkflow(input: ImageGenerationWorkflowInput
   const vaeDecodeNode = new VAEDecodeNode({
     samples: kSamplerNode,
     vae: loadCheckpointNode
+  });
+  workflow.addNode(vaeDecodeNode);
+
+  const saveImageNode = new SaveImageNode({
+    image: vaeDecodeNode
+  });
+  workflow.addNode(saveImageNode);
+
+  return workflow;
+}
+
+/**
+ * Z Image Turbo Generation Workflow
+ * 
+ * @remarks
+ * Creates a workflow for image generation using the Z method.
+ * 
+ * @category Workflows
+ * 
+ * @param input - The input configuration for the workflow.
+ * @returns The constructed workflow.
+ */
+export function zImageGenerationWorkflow(input: ImageGenerationWorkflowInput): BaseWorkflow {
+  const workflow = new BaseWorkflow();
+
+  const loadDiffusionModelNode = new LoadDiffusionModelNode({
+    diffusion_model_name: input.checkpointName,
+    weight_type: input.weightDtype
+  });
+  workflow.addNode(loadDiffusionModelNode);
+
+  const modelSamplingAuraFlowNode = new ModelSamplingAuraFlowNode({
+    shift: 6,
+    model: loadDiffusionModelNode
+  });
+  workflow.addNode(modelSamplingAuraFlowNode);
+
+  const loadClipNode = new LoadClipNode({
+    clip_name: input.clipName ?? "qwen_3_4b.safetensors",
+    type: input.clipType ?? "lumina2",
+    device: input.clipDevice
+  });
+  workflow.addNode(loadClipNode);
+
+  const loadVaeNode = new LoadVaeNode({
+    vae_name: input.vaeName ?? "ae.safetensors"
+  });
+  workflow.addNode(loadVaeNode);
+
+  const emptyLatentImageNode = new EmptyLatentImageNode({
+    width: input.width,
+    height: input.height,
+    batch_size: input.batch_size
+  });
+  workflow.addNode(emptyLatentImageNode);
+
+  const positivePrompt = new ClipTextEncodeNode({
+    text: input.positivePromptText,
+    clipProvider: loadClipNode
+  });
+  workflow.addNode(positivePrompt);
+
+  const conditioningZeroOutNode = new ConditioningZeroOutNode({
+    conditioning: positivePrompt
+  });
+  workflow.addNode(conditioningZeroOutNode);
+
+  const kSamplerNode = new KSamplerNode({
+    seed: input.seed,
+    steps: input.steps,
+    cfg: input.cfg,
+    samplerName: input.sampler,
+    denoise: input.denoise,
+    model: modelSamplingAuraFlowNode,
+    positiveConditioning: positivePrompt,
+    negativeConditioning: conditioningZeroOutNode,
+    latentImage: emptyLatentImageNode
+  });
+  workflow.addNode(kSamplerNode);
+
+  const vaeDecodeNode = new VAEDecodeNode({
+    samples: kSamplerNode,
+    vae: loadVaeNode
   });
   workflow.addNode(vaeDecodeNode);
 

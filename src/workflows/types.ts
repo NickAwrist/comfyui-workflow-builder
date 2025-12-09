@@ -19,4 +19,9 @@ export interface ImageGenerationWorkflowInput {
   batch_size?: number;
   image?: string;
   denoise?: number;
+  vaeName?: string;
+  clipName?: string;
+  clipType?: string;
+  clipDevice?: string;
+  weightDtype?: string;
 }
