@@ -27,12 +27,12 @@ export class LoadDiffusionModelNode extends BaseNode implements ModelProviderNod
 
   constructor(options: {
     /** The name of the diffusion model to load. */
-    diffusion_model_name: string
-    weight_type?: string
+    unet_name: string
+    weight_dtype?: string
   }) {
     super("UNETLoader", "Load Diffusion Model", {
-      diffusion_model_name: options.diffusion_model_name,
-      weight_type: options.weight_type ?? 'default'
+      unet_name: options.unet_name,
+      weight_dtype: options.weight_dtype ?? 'default'
     });
   }
 }

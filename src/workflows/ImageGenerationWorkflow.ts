@@ -126,8 +126,8 @@ export function zImageGenerationWorkflow(input: ImageGenerationWorkflowInput): B
   const workflow = new BaseWorkflow();
 
   const loadDiffusionModelNode = new LoadDiffusionModelNode({
-    diffusion_model_name: input.checkpointName,
-    weight_type: input.weightDtype
+    unet_name: input.checkpointName,
+    weight_dtype: input.weightDtype
   });
   workflow.addNode(loadDiffusionModelNode);
 
