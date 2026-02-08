@@ -28,6 +28,13 @@ export abstract class BaseNode {
 
   private static _node_id: number = 0;
 
+  /**
+   * Resets the node ID counter. Useful for testing.
+   */
+  public static resetNodeId(): void {
+    BaseNode._node_id = 0;
+  }
+
   public inputs: NodeInputs;
   public class_type: string;
   public _meta?: NodeMeta;

@@ -1,7 +1,7 @@
 {
   "$schema": "https://typedoc.org/schema.json",
   "entryPoints": [
-    "./src/docs.ts"
+    "./src/index.ts"
   ],
   "out": "docs",
   "categorizeByGroup": true,
