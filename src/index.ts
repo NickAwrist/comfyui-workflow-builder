@@ -25,6 +25,11 @@ export * from "./nodes/SaveImageNode";
 export * from "./nodes/SaveVideoNode";
 export * from "./nodes/VAEDecodeNode";
 export * from "./nodes/VAEEncodeNode";
+export * from "./nodes/KSamplerAdvancedNode";
+export * from "./nodes/LoraLoaderModelOnlyNode";
+export * from "./nodes/WanImageToVideoNode";
+export * from "./nodes/UnloadAllModelsNode";
+export * from "./nodes/UnetLoaderGGUFNode";
 
 // Custom Nodes
 export * from "./nodes/custom_nodes/comfyui-easy-use/EasyApplyLoraStackNode";
@@ -38,4 +43,5 @@ export * from "./nodes/custom_nodes/comfyui-easy-use/outputs";
 export * from "./workflows/BaseWorkflow";
 export * from "./workflows/HunyuanVideoGenerationWorkflow";
 export * from "./workflows/ImageGenerationWorkflow";
+export * from "./workflows/Wan22ImageToVideoWorkflow";
 export * from "./workflows/types";
